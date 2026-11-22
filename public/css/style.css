@@ -1,58 +1,53 @@
-/* ==========================================================
-   style.css  -  desain bersama (jangan ubah nama class,
-   karena dipakai view semua modul)
-   ========================================================== */
-
-/* ---------- Variabel warna ---------- */
 :root {
     --hijau:        #456f5e;
     --hijau-tua:    #2f4f43;
     --hijau-muda:   #e9f1ed;
     --merah:        #cc2222;
     --merah-muda:   #fbeaea;
-    --teks:         #2b2f33;
-    --teks-abu:     #5b616a;
-    --garis:        #e3e6e8;
-    --latar:        #f5f7f6;
+    --teks:         #1f2933;
+    --teks-abu:     #6b7480;
+    --garis:        #e6ebe9;
+    --latar:        #f1f5f3;
     --putih:        #ffffff;
-    --radius:       10px;
-    --bayangan:     0 1px 3px rgba(0, 0, 0, .08);
+    --radius:       12px;
+    --bayangan:     0 1px 2px rgba(31, 41, 51, .04), 0 4px 16px rgba(31, 41, 51, .04);
+    --fokus:        0 0 0 3px rgba(69, 111, 94, .2);
 }
 
-/* ---------- Dasar ---------- */
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
     display: flex;
     min-height: 100vh;
-    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
     color: var(--teks);
     background-color: var(--latar);
+    -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Konten utama ---------- */
 .konten {
     flex: 1;
     min-width: 0;
 }
 
-/* ---------- Header halaman ---------- */
 .header {
-    background-color: var(--putih);
-    padding: 24px 32px;
-    border-bottom: 1px solid var(--garis);
+    background-color: transparent;
+    padding: 28px 32px 4px;
+    border-bottom: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 }
 .header h1 {
-    margin: 0 0 4px 0;
-    font-size: 24px;
-    color: var(--teks);
+    margin: 0 0 2px 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--hijau-tua);
 }
 .header p {
     margin: 0;
@@ -61,66 +56,76 @@ body {
 }
 
 .isi {
-    padding: 24px 32px;
+    margin: 16px 32px 32px;
+    padding: 24px;
+    background-color: var(--putih);
+    border-radius: 16px;
+    box-shadow: var(--bayangan);
 }
 
-/* ---------- Tombol ---------- */
 .tombol {
     display: inline-block;
-    padding: 10px 18px;
-    border: none;
+    padding: 9px 18px;
+    border: 1px solid transparent;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
     font-family: inherit;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color .15s, box-shadow .15s;
+    transition: background-color .15s, border-color .15s, box-shadow .15s;
 }
-.tombol:hover        { box-shadow: 0 2px 6px rgba(0, 0, 0, .15); }
+.tombol:focus-visible { outline: none; box-shadow: var(--fokus); }
 .tombol-utama        { background-color: var(--hijau); color: #fff; }
 .tombol-utama:hover  { background-color: var(--hijau-tua); }
-.tombol-abu          { background-color: #e4e6e8; color: var(--teks-abu); }
-.tombol-abu:hover    { background-color: #d8dbde; }
-.tombol-merah        { background-color: var(--merah); color: #fff; }
-.tombol-merah:hover  { background-color: #a81b1b; }
-.tombol-kecil        { padding: 5px 10px; font-size: 12px; }
+.tombol-abu          { background-color: var(--putih); color: var(--teks-abu); border-color: #cfd6d3; }
+.tombol-abu:hover    { background-color: var(--latar); color: var(--teks); }
+.tombol-merah        { background-color: var(--merah-muda); color: var(--merah); }
+.tombol-merah:hover  { background-color: var(--merah); color: #fff; }
+.tombol-kecil        { padding: 5px 12px; font-size: 12px; border-radius: 6px; }
 
-/* ---------- Tabel ---------- */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 16px;
     background-color: var(--putih);
+    border: 1px solid var(--garis);
     border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: var(--bayangan);
 }
 th, td {
-    padding: 12px 14px;
+    padding: 14px 16px;
     text-align: left;
     border-bottom: 1px solid var(--garis);
 }
 th {
     background-color: var(--hijau-muda);
     color: var(--hijau-tua);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
 }
-tbody tr:hover { background-color: #fafcfb; }
+tbody tr { transition: background-color .12s; }
+tbody tr:hover { background-color: #f8faf9; }
 tbody tr:last-child td { border-bottom: none; }
 
-/* ---------- Status ---------- */
-.aktif    { color: var(--hijau); font-weight: bold; }
-.nonaktif { color: var(--merah); font-weight: bold; }
+.aktif,
+.nonaktif {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.aktif    { color: var(--hijau-tua); background-color: #d3ebdf; }
+.nonaktif { color: var(--merah);     background-color: var(--merah-muda); }
 
-/* ---------- Data kosong ---------- */
 .kosong {
     text-align: center;
-    padding: 80px 20px;
-    background-color: var(--putih);
-    border: 1px dashed var(--garis);
+    padding: 72px 20px;
+    background-color: var(--latar);
+    border: 1px dashed #cfd6d3;
     border-radius: var(--radius);
 }
 .kosong h2 { color: var(--teks); margin-top: 0; }
@@ -130,13 +135,12 @@ tbody tr:last-child td { border-bottom: none; }
 .form {
     max-width: 700px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 8px;
     background-color: var(--putih);
-    border-radius: var(--radius);
-    box-shadow: var(--bayangan);
 }
 .form h3 {
     margin: 0 0 6px 0;
+    font-size: 18px;
     color: var(--teks);
 }
 .baris {
@@ -149,9 +153,10 @@ tbody tr:last-child td { border-bottom: none; }
 }
 label {
     display: block;
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 13px;
     margin-bottom: 6px;
+    color: var(--teks);
 }
 input[type="text"],
 input[type="email"],
@@ -162,20 +167,22 @@ select,
 textarea {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #c3c7ca;
+    border: 1px solid #d3d9d6;
     border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
+    color: var(--teks);
     background-color: var(--putih);
     transition: border-color .15s, box-shadow .15s;
 }
+input:hover, select:hover, textarea:hover { border-color: #b4beba; }
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--hijau);
-    box-shadow: 0 0 0 3px rgba(69, 111, 94, .18);
+    box-shadow: var(--fokus);
 }
 input:disabled {
-    background-color: #eef0f1;
+    background-color: #f0f3f2;
     color: var(--teks-abu);
 }
 .error {
@@ -190,67 +197,111 @@ input:disabled {
     margin-top: 20px;
     padding-top: 16px;
     border-top: 1px solid var(--garis);
+    display: flex;
+    gap: 10px;
 }
 
-/* ---------- Sidebar ---------- */
+
 .sidebar {
-    width: 230px;
-    background: var(--hijau-tua);
-    color: #fff;
+    width: 248px;
+    background: var(--putih);
+    color: var(--teks);
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
+    padding: 24px 0 20px;
     flex-shrink: 0;
+    border-right: 1px solid var(--garis);
 }
 .sidebar-brand {
     font-size: 20px;
-    font-weight: bold;
-    padding: 0 20px 15px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: var(--hijau-tua);
+    padding: 0 24px 20px;
 }
 .sidebar-user {
-    padding: 12px 20px;
-    border-top: 1px solid rgba(255, 255, 255, .2);
-    border-bottom: 1px solid rgba(255, 255, 255, .2);
-    margin-bottom: 10px;
+    margin: 0 16px 14px;
+    padding: 12px 14px;
+    background: var(--hijau-muda);
+    border-radius: 10px;
+    color: var(--hijau-tua);
+    font-weight: 600;
 }
 .sidebar-user small {
+    display: block;
     text-transform: capitalize;
-    opacity: .7;
+    font-weight: 400;
+    color: var(--teks-abu);
 }
-.sidebar-menu { flex: 1; }
+.sidebar-menu {
+    flex: 1;
+    padding: 0 12px;
+}
 .sidebar-menu a {
     display: block;
-    padding: 10px 20px;
-    color: #fff;
+    padding: 10px 14px;
+    margin-bottom: 2px;
+    color: var(--teks-abu);
+    font-weight: 500;
     text-decoration: none;
-    border-left: 3px solid transparent;
+    border-radius: 8px;
+    transition: background-color .15s, color .15s;
 }
-.sidebar-menu a:hover { background: rgba(255, 255, 255, .1); }
-/* color #fff supaya tidak tertimpa .aktif (hijau) di atas */
+.sidebar-menu a:hover {
+    background: var(--hijau-muda);
+    color: var(--hijau-tua);
+}
+
 .sidebar-menu a.aktif {
-    background: rgba(255, 255, 255, .18);
+    display: block;
+    padding: 10px 14px;
+    background: var(--hijau);
     color: #fff;
-    font-weight: bold;
-    border-left-color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
 }
-.sidebar-logout { padding: 0 20px; }
+.sidebar-logout { padding: 0 16px; }
 .sidebar-logout button {
     width: 100%;
     padding: 9px;
-    border: 1px solid rgba(255, 255, 255, .4);
+    border: 1px solid #d3d9d6;
     border-radius: 8px;
     background: transparent;
-    color: #fff;
+    color: var(--teks-abu);
     font-family: inherit;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color .15s, color .15s, border-color .15s;
 }
-.sidebar-logout button:hover { background: rgba(255, 255, 255, .12); }
+.sidebar-logout button:hover {
+    background: var(--merah-muda);
+    color: var(--merah);
+    border-color: #f1c4c4;
+}
 
-/* ---------- Layar kecil ---------- */
+.paging {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+}
+.paging a {
+    min-width: 30px;
+    padding: 5px 9px;
+    text-align: center;
+    color: var(--teks-abu);
+    text-decoration: none;
+    border-radius: 6px;
+}
+.paging a:hover { background: var(--hijau-muda); }
+.paging a.aktif { background: var(--hijau); color: #fff; }
+
 @media (max-width: 768px) {
     body { flex-direction: column; }
-    .sidebar { width: 100%; }
+    .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--garis); }
     .baris { flex-direction: column; gap: 0; }
-    .header, .isi { padding: 16px; }
+    .header { padding: 20px 16px 4px; }
+    .isi { margin: 12px 16px 24px; padding: 16px; }
     table { display: block; overflow-x: auto; }
 }
