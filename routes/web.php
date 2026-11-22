@@ -4,6 +4,7 @@ use App\Http\Controllers\ArmadaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ZonasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('vendors.index'));
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/vendors', [VendorController::class, 'index'])->name('vendors.index');
         Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
         Route::get('/armada', [ArmadaController::class, 'index'])->name('armada.index');
+        Route::get('/zonasi', [ZonasiController::class, 'index'])->name('zonasi.index');
     });
 
     // Armada: admin & petugas boleh tambah/ubah, hanya admin yang boleh hapus
@@ -33,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::resource('vendors', VendorController::class)->except(['index', 'show']);
         Route::resource('barang', BarangController::class)->except(['index', 'show']);
+        Route::resource('zonasi', ZonasiController::class)->except(['index', 'show']);
         Route::delete('/armada/{armada}', [ArmadaController::class, 'destroy'])->name('armada.destroy');
     });
 });

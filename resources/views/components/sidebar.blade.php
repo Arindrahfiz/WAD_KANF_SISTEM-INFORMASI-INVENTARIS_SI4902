@@ -19,6 +19,10 @@
            class="{{ request()->routeIs('armada.*') ? 'aktif' : '' }}">
             Armada
         </a>
+        <a href="{{ route('zonasi.index') }}"
+           class="{{ request()->routeIs('zonasi.*') ? 'aktif' : '' }}">
+            Zonasi
+        </a>
     </nav>
 
     <form action="{{ route('logout') }}" method="POST" class="sidebar-logout">
